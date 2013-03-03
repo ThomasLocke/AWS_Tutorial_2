@@ -2,6 +2,7 @@ with AWS.Messages;
 with AWS.MIME;
 with AWS.Response;
 with AWS.Status;
+with AWS.Templates;
 
 package body Not_Found is
 
@@ -29,13 +30,17 @@ package body Not_Found is
      (Request : in AWS.Status.Data)
       return AWS.Response.Data
    is
+      use AWS.Templates;
+
       Resource : constant String := AWS.Status.URI (Request);
+
+      Translations : Translate_Set;
    begin
+      Insert (Translations, Assoc ("RESOURCE", Resource));
+
       return AWS.Response.Build
         (Content_Type  => AWS.MIME.Text_HTML,
-         Message_Body  =>
-           "<h1>Not found</h1>" &
-           "<p>Resource '" & Resource & "' not found</p>",
+         Message_Body  => Parse ("templates/not_found.tmpl", Translations),
          Status_Code   => AWS.Messages.S404);
    end Generate_Content;
 

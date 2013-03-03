@@ -4,6 +4,7 @@ build*/*
 
 # Do not track stuff in exe, except .gitignore
 exe/*
+!exe/templates/
 !exe/.gitignore
 
 # Do not track emacs temporary and backup files
