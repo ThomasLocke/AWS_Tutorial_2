@@ -1,7 +1,4 @@
 with AWS.Messages;
-with AWS.MIME;
-with AWS.Response;
-with AWS.Status;
 with AWS.Templates;
 
 package body Hello_World is

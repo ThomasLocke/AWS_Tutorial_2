@@ -10,9 +10,12 @@ procedure AWS_Tutorial is
    Web_Server : AWS.Server.HTTP;
 begin
    Ada.Text_IO.Put_Line
-     ("I'm available at localhost port"
+     ("I'm available at localhost:"
       & Positive'Image (AWS.Default.Server_Port)
       & ". Press q to kill me.");
+
+   Ada.Text_IO.Put_Line ("http://localhost:8080/helloworld");
+   Ada.Text_IO.Put_Line ("http://localhost:8080/helloworld.tmpl");
 
    AWS.Server.Start (Web_Server => Web_Server,
                      Dispatcher => Handlers.Get_Dispatcher,

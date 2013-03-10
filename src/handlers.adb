@@ -21,6 +21,10 @@ package body Handlers is
                            Action => Hello_World.Callback);
       --  The /helloworld resource.
 
+      Dispatcher.Register (URI    => "/helloworld.tmpl",
+                           Action => Hello_World.Hello_World_Template'Access);
+      --  Dump the hello_world.tmpl file to the browser.
+
       return Dispatcher;
    end Get_Dispatcher;
 
